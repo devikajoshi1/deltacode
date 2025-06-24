@@ -1,6 +1,7 @@
 const { error } = require("console");
 const express = require("express");
 const app = express();
+const ExpressError = require("./Expresserror")
 
 app.use((req,res,next) => {
   console.log("I'm real middleware");
@@ -18,15 +19,26 @@ app.use((req,res,next) => {
 
 app.use("/api",(req,res,next)=>{
   let {token} = req.query;
-  if(token === "give access"){
+  if(token === "giveaccess"){
     next();
   }
-  throw new Error("ACCESS DENIED!");
+  throw new ExpressError(401,"ACCESS DENIED!");
 });
 
-// app.get("/wrong",(req,res)=>{
-//   abcd=abcd;
-// })
+app.get("/err",(req,res)=>{
+  abcd=abcd;
+})
+
+
+app.get("/admin", (req, res) => {
+  throw new ExpressError(403, "Access to admin is Forbidden");
+});
+
+app.use((err,req,res,next)=>{
+  let{ status = 500 ,message = "SOME ERROR" } = err;
+  res.status(status).send(message) ;
+
+})
 
 app.get("/api",(req,res)=>{
   res.send("data");
