@@ -9,6 +9,7 @@ const listingSchema = new Schema({
     required: true
   },
   description: String,
+  
   image: {
     filename: String,
     url: {
@@ -21,7 +22,7 @@ const listingSchema = new Schema({
   country: String,
   reviews:[
     {
-      type: Schema.Types.ObjectId,
+      type:Schema.Types.ObjectId,
       ref:"Review"
     }
   ]
