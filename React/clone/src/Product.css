@@ -1,0 +1,11 @@
+.Product {
+  border: 1px solid white;
+  border-radius: 14px;
+  padding: 15px 10px;
+  width: 200px;
+  background-color: #1a1a1a;
+  color: white;
+  text-align: center;
+  /* font-family: sans-serif; */
+  margin-left: 15px;
+}
